@@ -29,18 +29,19 @@ public class RequestController {
     }
 
     @PostMapping("/predict")
-    public Map<String, Object> predict(@RequestParam String state,
-                                       @RequestParam float acres,
-                                       @RequestParam String crop) {
-        float prediction = service.getPrediction(state, acres, crop);
-        return Map.of("prediction", prediction);
+    public Map<String, Object> predict(
+            @RequestParam String state,
+            @RequestParam float area,
+            @RequestParam String crop
+    ) {
+        return service.getPrediction(state, area, crop);
     }
 
-//    @GetMapping("/recommend")
-//    public Map<String, Object> recommend(@RequestParam String state,
-//                                         @RequestParam float acres) {
-//        List<String> recs = service.getRecommendations(state, acres);
-//        return Map.of("recommendations", recs);
-//    }
+    @PostMapping("/recommend")
+    public List<Map<String, Object>> recommend(@RequestParam String state,
+                                               @RequestParam float area) {
+        return service.getRecommendations(state, area);
+    }
+
 
 }

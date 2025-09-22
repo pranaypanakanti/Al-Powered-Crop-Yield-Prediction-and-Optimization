@@ -27,35 +27,37 @@ public class ServiceProvider {
         return stateRepo.getStateByKeyWord(keyword);
     }
 
-    private final RestTemplate restTemplate = new RestTemplate();
-    private final String FASTAPI_URL = "http://localhost:8000/predict";
+    private final RestTemplate restTemplate;
+    private final String FASTAPI_PREDICT_URL = "http://localhost:8000/predict";
+    private final String FASTAPI_RECOMMEND_URL = "http://localhost:8000/recommend";
 
-    public float getPrediction(String state, float area, String crop) {
-        Map<String, Object> payload = new HashMap<>();
-        payload.put("crop", crop);
-        payload.put("area", area);
-        payload.put("state", state);
-        Map<String, Object> response = restTemplate.postForObject(FASTAPI_URL, payload, Map.class);
-        if (response != null && response.containsKey("predicted_yield")) {
-            return ((Number) response.get("predicted_yield")).floatValue();
-        }
-        return 0;
-
+    public ServiceProvider(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
-//    private final String FASTAPI_RECOMMEND_URL = "http://localhost:8000/recommend";
-//
-//    public List<String> getRecommendations(String state, float area) {
-//        Map<String, Object> payload = new HashMap<>();
-//        payload.put("State", state);
-//        payload.put("Area", area);
-//
-//        Map response = restTemplate.postForObject(FASTAPI_RECOMMEND_URL, payload, Map.class);
-//
-//        if (response != null && response.containsKey("recommendations")) {
-//            return (List<String>) response.get("recommendations");
-//        }
-//        return Collections.emptyList();
-//    }
+
+    public Map<String, Object> getPrediction(String state, float area, String crop) {
+        Map<String, Object> payload = Map.of(
+                "state", state,
+                "area", area,
+                "crop", crop
+        );
+
+        Map<String, Object> response = restTemplate.postForObject(FASTAPI_PREDICT_URL, payload, Map.class);
+        return response;
+        }
+
+    public List<Map<String, Object>> getRecommendations(String state, float area) {
+        Map<String, Object> payload = Map.of(
+                "state", state,
+                "area", area
+        );
+
+        List<Map<String, Object>> response =
+                restTemplate.postForObject(FASTAPI_RECOMMEND_URL, payload, List.class);
+
+        return response != null ? response : List.of();
+    }
+
 
 }
