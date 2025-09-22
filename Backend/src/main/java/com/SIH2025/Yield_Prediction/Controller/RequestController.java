@@ -1,10 +1,9 @@
 package com.SIH2025.Yield_Prediction.Controller;
 
 import com.SIH2025.Yield_Prediction.Service.ServiceProvider;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -17,6 +16,43 @@ public class RequestController {
         this.service = service;
     }
 
+    @RequestMapping("/location/{state}/{acres}/{crop}")
+    public float giveYieldPrediction(@PathVariable String state,@PathVariable float acres,@PathVariable String crop){
+        float yield = service.giveYieldPrediction(state,acres,crop);
+        return yield;
+    }
 
+    @RequestMapping("/recommendation/{state}/{acres}")
+    public Map<String,Integer> giveCropRecommendation(@PathVariable String state, @PathVariable float acres){
+        Map<String,Integer> recommendationList = service.giveCropRecommendation(state,acres);
+        return recommendationList;
+    }
+
+    @GetMapping("/crop/search")
+    public List<String> getCropByKeyWord(String keyword){
+        List<String> crops = service.getCropByKeyWord(keyword);
+        return crops;
+    }
+
+    @GetMapping("/state/search")
+    public List<String> getStateByKeyWord(String keyword){
+        List<String> state = service.getStateCropByKeyWord(keyword);
+        return state;
+    }
+
+    @PostMapping("/predict")
+    public Map<String, Object> predict(@RequestParam String state,
+                                       @RequestParam float acres,
+                                       @RequestParam String crop) {
+        float prediction = service.getPrediction(state, acres, crop);
+        return Map.of("prediction", prediction);
+    }
+
+    @GetMapping("/recommend")
+    public Map<String, Object> recommend(@RequestParam String state,
+                                         @RequestParam float acres) {
+        List<String> recs = service.getRecommendations(state, acres);
+        return Map.of("recommendations", recs);
+    }
 
 }
