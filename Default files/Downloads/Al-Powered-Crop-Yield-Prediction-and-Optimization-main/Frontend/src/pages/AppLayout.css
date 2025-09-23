@@ -1,0 +1,49 @@
+/* src/pages/AppLayout.css */
+
+/* src/pages/AppLayout.css */
+
+.page-container {
+    min-height: 100vh; /* Fill the full height of the screen */
+    width: 100vw;     /* Fill the full width of the screen */
+    background-color: transparent; /* The body now provides the background color */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* src/pages/AppLayout.css */
+
+.background-illustration {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.1);
+    width: 110vw;
+    height: 110vh;
+    object-fit: cover;
+    z-index: -1; /* Place it behind all content */
+    
+    /* This is the key change */
+    filter: blur(8px);
+    opacity: 0.8;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1.5rem 3rem;
+    box-sizing: border-box;
+    z-index: 1;
+    border-bottom: 2px solid #e0d8ce;
+}
+
+.logo-container { display: flex; align-items: center; gap: 1rem; }
+.logo-img { height: 50px; width: 50px; }
+.logo-text { font-weight: 700; font-size: 1.5rem; color: #333; }
+.nav-links { display: flex; gap: 2.5rem; align-items: center; }
+.nav-links a { font-weight: 500; font-size: 1rem; color: #333; text-decoration: none; transition: color 0.2s ease; }
+.nav-links a:hover { color: #A3B489; }

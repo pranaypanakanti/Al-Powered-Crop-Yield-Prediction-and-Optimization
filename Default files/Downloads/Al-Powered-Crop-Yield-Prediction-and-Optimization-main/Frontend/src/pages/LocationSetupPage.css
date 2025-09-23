@@ -1,0 +1,109 @@
+/* src/pages/LocationSetupPage.css */
+
+.setup-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    z-index: 1;
+    padding-bottom: 5%;
+}
+
+.input-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    gap: 0.75rem;
+}
+
+.input-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.input-section p {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* Styles for the text and number inputs */
+.styled-input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: 2px solid #E0E0E0;
+    border-radius: 12px;
+    background-color: #FFFFFF;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), inset 0 1px 1px white, inset 0 -2px 3px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+.styled-input:focus {
+    outline: none;
+    border-color: #A3B489;
+}
+
+/* Wrapper for positioning the search results */
+.search-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.search-results-list {
+    list-style-type: none;
+    padding: 0.5rem 0;
+    margin: 0.5rem 0 0 0;
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    border: 2px solid #E0E0E0;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.search-results-list li {
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+}
+
+.search-results-list li:hover {
+    background-color: #f2f2f2;
+}
+
+.error-message {
+    color: #c0392b;
+    font-size: 0.9rem;
+}
+
+.continue-button {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: white;
+    background-color: #4A4A4A;
+    border: 2px solid #333;
+    border-radius: 12px;
+    padding: 1rem;
+    cursor: pointer;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease-in-out;
+}
+
+.continue-button:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+}
