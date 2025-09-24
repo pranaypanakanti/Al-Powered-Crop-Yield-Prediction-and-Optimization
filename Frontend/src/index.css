@@ -1,0 +1,9 @@
+/* src/index.css */
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #F8EFE4; /* Sets a base background color */
+}
