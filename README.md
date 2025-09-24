@@ -27,6 +27,7 @@ This project was developed as part of Smart India Hackathon 2025. It uses machin
 
 - **Frontend:** React (running on `localhost:5000`)
 - **Backend:** Spring Boot (running on `localhost:8080`)
+- **ML Model:** Scikit-Learn, Pandas, Numpy, Joblib (running on `localhost:8000`)
 - **ML Model API:** FastAPI (integrated with backend)
 - **Database:** MySQL (port `3306`)
 - **UI/UX Design:** Figma
